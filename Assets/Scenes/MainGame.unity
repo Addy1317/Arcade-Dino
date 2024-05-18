@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 892708473}
   - component: {fileID: 892708474}
   - component: {fileID: 892708475}
+  - component: {fileID: 892708476}
   m_Layer: 0
   m_Name: PlayerDino
   m_TagString: Player
@@ -341,6 +342,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gravity: 18.36
   _jumpForce: 8
+--- !u!114 &892708476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892708471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fddc5e89e6973b24483d8122a35f0c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: 21300000, guid: 78b50e9bc45b9d149ad7d06bd093708a, type: 3}
+  - {fileID: 21300000, guid: 3855f596a435bff4cbc876f08fafa44c, type: 3}
 --- !u!1 &964505564
 GameObject:
   m_ObjectHideFlags: 0
