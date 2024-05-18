@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SlowpokeStudio.ArcadeDino
 {
@@ -11,6 +12,7 @@ namespace SlowpokeStudio.ArcadeDino
 
         [SerializeField] private float _initalGameSpeed = 5f;
         [SerializeField] private float _gameSpeedIncreases = 0.1f;
+        [SerializeField] private GameObject _gameOverPanel;
         internal float gameSpeed {get; private set; }
 
         private PlayerController _playerController;
@@ -48,7 +50,7 @@ namespace SlowpokeStudio.ArcadeDino
             gameSpeed += _gameSpeedIncreases * Time.deltaTime;
         }
 
-        private void NewGame()
+        public void NewGame()
         {
             Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
 
@@ -62,6 +64,7 @@ namespace SlowpokeStudio.ArcadeDino
 
             _playerController.gameObject.SetActive(true);
             _spawner.gameObject.SetActive(true);
+            _gameOverPanel.SetActive(false);
         }
 
         public void GameOver()
@@ -70,6 +73,7 @@ namespace SlowpokeStudio.ArcadeDino
             enabled = false;
             _playerController.gameObject.SetActive(false);
             _spawner.gameObject.SetActive(false);
+            _gameOverPanel.SetActive(true);
         }
         
     }
