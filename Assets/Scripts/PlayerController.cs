@@ -42,5 +42,13 @@ namespace SlowpokeStudio.ArcadeDino
             }
             _characterController.Move(_direction * Time.deltaTime);
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.CompareTag("Obstacle"))
+            {
+                GameManager.Instance.GameOver();
+            }
+        }
     }
 }

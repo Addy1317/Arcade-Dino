@@ -9,9 +9,12 @@ namespace SlowpokeStudio.ArcadeDino
         //Basic Singleton
         internal static GameManager Instance { get; private set; }
 
-        [SerializeField] private float initalGameSpeed = 5f;
-        [SerializeField] private float gameSpeedIncreases = 0.1f;
+        [SerializeField] private float _initalGameSpeed = 5f;
+        [SerializeField] private float _gameSpeedIncreases = 0.1f;
         internal float gameSpeed {get; private set; }
+
+        private PlayerController _playerController;
+        private Spawner _spawner;
 
         private void Awake()
         {
@@ -35,19 +38,39 @@ namespace SlowpokeStudio.ArcadeDino
 
         private void Start()
         {
+            _playerController = FindObjectOfType<PlayerController>();
+            _spawner = FindObjectOfType<Spawner>();
             NewGame();
         }
 
         private void Update()
         {
-            gameSpeed += gameSpeedIncreases * Time.deltaTime;
+            gameSpeed += _gameSpeedIncreases * Time.deltaTime;
         }
 
         private void NewGame()
         {
-            gameSpeed = initalGameSpeed;
+            Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
+
+            foreach (var obstacle in obstacles)
+            {
+                Destroy(obstacle.gameObject);
+            }
+
+            gameSpeed = _initalGameSpeed;
+            enabled = true;
+
+            _playerController.gameObject.SetActive(true);
+            _spawner.gameObject.SetActive(true);
         }
 
+        public void GameOver()
+        {
+            gameSpeed = 0f;
+            enabled = false;
+            _playerController.gameObject.SetActive(false);
+            _spawner.gameObject.SetActive(false);
+        }
         
     }
 }

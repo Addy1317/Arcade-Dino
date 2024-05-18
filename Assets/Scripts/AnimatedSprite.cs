@@ -20,6 +20,11 @@ namespace SlowpokeStudio.ArcadeDino
             Invoke(nameof(Animate),0f);
         }
 
+        private void OnDisable()
+        {
+            CancelInvoke();
+        }
+
         private void Animate()
         {
             _frame++;
